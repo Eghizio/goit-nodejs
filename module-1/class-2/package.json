@@ -1,0 +1,14 @@
+{
+  "type": "module",
+  "scripts": {
+    "start": "node 0-argv.js",
+    "dev": "nodemon 0-argv.js"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "commander": "^9.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
