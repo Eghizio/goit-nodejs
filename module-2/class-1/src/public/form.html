@@ -1,0 +1,20 @@
+<head>
+  <title>Form</title>
+  <script src="./post-json.js" defer></script>
+  <script src="./users.js" defer></script>
+</head>
+
+<form action="/login" method="POST">
+  <label for="email">Email</label>
+  <input type="text" name="email" id="email" />
+  <label for="password">Hasło</label>
+  <input type="password" name="password" id="password" />
+  <button type="submit">Login</button>
+</form>
+
+<button type="button" id="btn-json">Send JSON</button>
+
+<div>
+  <button type="button" id="btn-users">Get users</button>
+  <button type="button" id="btn-users-admin">Get users as admin</button>
+</div>
