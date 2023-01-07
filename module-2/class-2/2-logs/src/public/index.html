@@ -1,0 +1,58 @@
+<head>
+  <title>Users</title>
+</head>
+
+<body>
+  <form>
+    <label>
+      <span>Name</span>
+      <input type="text">
+      <button type="button">Create user</button>
+    </label>
+  </form>
+
+  <div>
+    <button type="button">Get users</button>
+    <pre></pre>
+  </div>
+</body>
+
+<script>
+  const postUser = async (name) => {
+    try {
+      const response = await fetch("/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name })
+      });
+      const { id } = await response.json();
+
+      alert(`Created user ${name} with ID: ${id}`);
+    } catch (error) {
+      alert(`Failed to create user. Name ${name} already taken!`)
+    }
+  };
+
+  const getUsers = async () => {
+    const response = await fetch("/users");
+    const users = await response.json();
+    return users;
+  };
+
+  const createBtn = document.querySelector("form button");
+  createBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const name = document.querySelector("form input").value;
+    postUser(name);
+  });
+
+  const getBtn = document.querySelector("div button");
+  getBtn.addEventListener("click", () => {
+    getUsers().then(users => {
+      document.querySelector("div pre").textContent = JSON.stringify(users, null, 2);
+    });
+  });
+
+
+</script>
