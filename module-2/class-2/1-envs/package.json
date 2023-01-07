@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "node app.js",
+    "prod": "NODE_ENV=\"production\" node app.js",
+    "both": "npm run dev && npm run prod"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
