@@ -1,0 +1,129 @@
+<title>JWT</title>
+
+<style>
+  form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid red;
+  }
+
+  .auth {
+    display: flex;
+    gap: 4rem;
+  }
+
+  .red {
+    color: red;
+  }
+</style>
+
+<div class="auth">
+  <form id="register-form">
+    <label>
+      <span>Username</span>
+      <input type="text" name="username" id="username">
+    </label>
+    <label>
+      <span>Email</span>
+      <input type="email" name="email" id="email">
+    </label>
+    <label>
+      <span>Password</span>
+      <input type="password" name="password" id="password">
+    </label>
+    <button>Register</button>
+  </form>
+
+  <form id="login-form">
+    <label>
+      <span>Email</span>
+      <input type="email" name="email" id="email">
+    </label>
+    <label>
+      <span>Password</span>
+      <input type="password" name="password" id="password">
+    </label>
+    <button>Login</button>
+  </form>
+</div>
+
+<div>
+  <button id="protected">Get secret data</button>
+  <p class="red">Send token with request!</p>
+  <button id="public">Get public data</button>
+</div>
+
+<script>
+  let token = null;
+
+  const registerForm = document.querySelector("form#register-form");
+  registerForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const user = {
+      username: registerForm.querySelector("input#username").value,
+      email: registerForm.querySelector("input#email").value,
+      password: registerForm.querySelector("input#password").value,
+    };
+
+    const response = await fetch("/api/registration", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user)
+    });
+
+    const data = await response.json();
+    console.log(data);
+  });
+
+  const loginForm = document.querySelector("form#login-form");
+  loginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const user = {
+      email: loginForm.querySelector("input#email").value,
+      password: loginForm.querySelector("input#password").value,
+    };
+
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user)
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+    token = data.token
+  });
+
+  const protectedBtn = document.querySelector("button#protected");
+  protectedBtn.addEventListener("click", async () => {
+    if (!token) alert("No token! Log in first!");
+
+    try {
+      const response = await fetch("/api/protected", {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+      alert(JSON.stringify(data, null, 2));
+    } catch (error) {
+      alert("Failed to get protected resources!");
+    }
+  });
+
+  const publicBtn = document.querySelector("button#public");
+  publicBtn.addEventListener("click", async () => {
+    const response = await fetch("/api/public");
+    const data = await response.json();
+    alert(JSON.stringify(data, null, 2));
+  });
+</script>
