@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  background-color: bisque;
+}
+
+.chat {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-settings {
+  display: flex;
+}
+
+.username {
+  padding: 0 0.5rem;
+  text-decoration: underline;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+  color: orange;
+}
+
+.messages {
+  height: 95vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.msg {
+  display: flex;
+  align-items: center;
+  background-color: lightblue;
+  border: 1px solid blueviolet;
+}
+
+.msg.info {
+  background-color: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.msg-header {
+  padding: 0.5rem;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+}
+
+.msg-text {
+  padding: 0.5rem;
+  flex: 1;
+}
+
+.msg-form {
+  padding: 2px;
+  margin: 0;
+  font-size: 32px;
+  width: 100%;
+  height: 5vh;
+  display: flex;
+}
+
+.msg-input {
+  flex: 1;
+}

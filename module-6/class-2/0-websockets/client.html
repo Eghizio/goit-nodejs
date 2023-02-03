@@ -1,0 +1,36 @@
+<title>WebSocket Client</title>
+
+<h1>Open the Console (F12)</h1>
+<a href="./client.html" target="_blank">Open another client</a>
+
+<script>
+  const ws = new WebSocket("ws://localhost:8080");
+
+  ws.onmessage = (event) => {
+    console.log(event.data);
+  };
+</script>
+
+
+
+<form>
+  <input type="text">
+  <button>Send!</button>
+</form>
+
+<script>
+  const input = document.querySelector("form>input");
+  document.querySelector("form").addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const message = input.value;
+    if (!message) return;
+
+    console.log(`Sending: ${message}`);
+
+    ws.send(message);
+
+    input.value = "";
+    input.focus();
+  });
+</script>
