@@ -1,0 +1,38 @@
+<head>
+  <title>Socket.io Client</title>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="./ui.js" defer></script>
+  <script src="./script.js" defer></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<!-- <h2>Open the Console (F12)</h2>
+<a href="./index.html" target="_blank">Open another client</a>
+<h1></h1> -->
+
+
+<main class="chat">
+  <nav class="navbar">
+    <h1 class="title">GoIT ChatNotGPT</h1>
+    <div>
+      <span class="user-settings">
+        Logged in as:
+        <span id="username" class="username"></span>
+      </span>
+
+      <form id="name">
+        <input type="text">
+        <button>Change name</button>
+      </form>
+
+      <a href="./index.html" target="_blank">Open another client</a>
+    </div>
+  </nav>
+
+  <div id="messages" class="messages"></div>
+
+  <form id="msg-form" class="msg-form">
+    <input class="msg-input" type="text">
+    <button class="msg-btn">Send!</button>
+  </form>
+</main>
